@@ -6,7 +6,6 @@ import {
   intro,
   links,
   projects,
-  stack,
   type Entry,
   type Project,
 } from "./content";
@@ -228,24 +227,6 @@ function Projects() {
   );
 }
 
-function Stack() {
-  return (
-    <section className="rise mt-9" style={{ animationDelay: "260ms" }}>
-      <SectionLabel>stack</SectionLabel>
-      <ul className="flex flex-wrap gap-2">
-        {stack.map((tag) => (
-          <li
-            key={tag}
-            className="rounded-full border border-hair bg-paper px-3 py-1 font-mono text-[0.72rem] text-soft"
-          >
-            {tag}
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
 function Elsewhere() {
   return (
     <section className="rise mt-9" style={{ animationDelay: "500ms" }}>
@@ -325,7 +306,6 @@ export default function App() {
         </aside>
 
         <Experience />
-        <Stack />
         <Projects />
         <Artifacts />
         <Elsewhere />

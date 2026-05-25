@@ -27,18 +27,6 @@ export const experience: Entry[] = [
   { label: "B.Eng. Software Engineering, GDUT", date: "in progress" },
 ];
 
-// The "stack" tags — adjust to match what you actually want to highlight.
-export const stack: string[] = [
-  "Go",
-  "TypeScript",
-  "Vue",
-  "Docker",
-  "Kubernetes",
-  "CI/CD",
-  "SQLite",
-  "PostgreSQL",
-];
-
 // A linked project. `badge` is the hand-drawn sticker text (kept short so it
 // reads well in the marker font); `color` picks one of the marker accents.
 export type Project = {
