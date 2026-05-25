@@ -93,7 +93,7 @@ function Sticker({
     // uneven radii read as hand-cut paper rather than a CSS pill
     borderRadius: "13px 8px 12px 9px / 8px 12px 9px 13px",
     filter:
-      "drop-shadow(0 1px 1px rgba(0,0,0,0.05)) drop-shadow(0 7px 10px rgba(0,0,0,0.12))",
+      "drop-shadow(0 1px 1px rgba(0,0,0,0.04)) drop-shadow(0 3px 5px rgba(0,0,0,0.08))",
   };
   const inner = (
     <>
