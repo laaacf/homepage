@@ -27,16 +27,18 @@ export const experience: Entry[] = [
   { label: "B.Eng. Software Engineering, GDUT", date: "in progress" },
 ];
 
-// A linked project. `badge` is the hand-drawn sticker text (kept short so it
-// reads well in the marker font); `color` picks one of the marker accents.
+// A project. `badge` is the hand-drawn sticker text (kept short so it reads
+// well in the marker font); `color` picks one of the marker accents. `href`
+// is optional — omit it for closed-source / unlinked projects.
 export type Project = {
   label: string;
-  href: string;
   badge: string;
   color: "red" | "green" | "blue";
+  href?: string;
 };
 
 export const projects: Project[] = [
+  { label: "Kemate — a Vercel-like PaaS", badge: "PaaS", color: "green" },
   { label: "Ech0 — self-hosted microblog", href: "https://github.com/lin-snow/Ech0", badge: "★ 2k", color: "red" },
   { label: "Dox — terminal todo, TUI + CLI", href: "https://github.com/lin-snow/dox", badge: "</> TUI", color: "blue" },
 ];

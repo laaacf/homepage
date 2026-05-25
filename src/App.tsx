@@ -40,33 +40,43 @@ const MARKER = {
 } as const;
 
 /* Hand-drawn sticker: organic (uneven) corners, tinted fill, marker-colored
-   ink, lightly peeled off the page. Straightens and lifts on hover. */
-function StickerLink({
+   ink, lightly peeled off the page. Renders as a link when `href` is given
+   (straightens and lifts on hover), otherwise as a plain badge. */
+function Sticker({
   href,
   label,
   badge,
   color,
   tilt,
 }: {
-  href: string;
+  href?: string;
   label: string;
   badge: string;
   color: keyof typeof MARKER;
   tilt: string;
 }) {
   const stroke = MARKER[color];
+  const className = `${tilt} inline-flex shrink-0 items-center gap-1 border-[1.5px] px-2.5 py-[3px] font-hand text-[1.05rem] leading-none shadow-[0_1px_1px_rgba(0,0,0,0.05),0_6px_12px_-8px_rgba(0,0,0,0.3)]`;
+  const style = {
+    color: stroke,
+    borderColor: stroke,
+    backgroundColor: `color-mix(in srgb, ${stroke} 12%, var(--color-paper))`,
+    // uneven radii read as hand-cut paper rather than a CSS pill
+    borderRadius: "13px 8px 12px 9px / 8px 12px 9px 13px",
+  };
+  if (!href) {
+    return (
+      <span className={className} style={style}>
+        {badge}
+      </span>
+    );
+  }
   return (
     <a
       href={href}
       aria-label={`${label} — open`}
-      className={`${tilt} inline-flex shrink-0 items-center gap-1 border-[1.5px] px-2.5 py-[3px] font-hand text-[1.05rem] leading-none shadow-[0_1px_1px_rgba(0,0,0,0.05),0_6px_12px_-8px_rgba(0,0,0,0.3)] transition-transform duration-200 hover:-translate-y-0.5 hover:rotate-0`}
-      style={{
-        color: stroke,
-        borderColor: stroke,
-        backgroundColor: `color-mix(in srgb, ${stroke} 12%, var(--color-paper))`,
-        // uneven radii read as hand-cut paper rather than a CSS pill
-        borderRadius: "13px 8px 12px 9px / 8px 12px 9px 13px",
-      }}
+      className={`${className} transition-transform duration-200 hover:-translate-y-0.5 hover:rotate-0`}
+      style={style}
     >
       {badge}
     </a>
@@ -203,17 +213,21 @@ function Artifacts() {
 function Projects() {
   return (
     <section className="rise mt-9" style={{ animationDelay: "400ms" }}>
-      <SectionLabel>open source</SectionLabel>
+      <SectionLabel>projects</SectionLabel>
       <ul>
         {projects.map((r: Project, i) => (
           <RowShell key={r.label}>
-            <a
-              href={r.href}
-              className="min-w-0 text-[0.95rem] leading-snug text-ink underline decoration-transparent underline-offset-4 transition-colors duration-200 hover:decoration-ink/40"
-            >
-              {r.label}
-            </a>
-            <StickerLink
+            {r.href ? (
+              <a
+                href={r.href}
+                className="min-w-0 text-[0.95rem] leading-snug text-ink underline decoration-transparent underline-offset-4 transition-colors duration-200 hover:decoration-ink/40"
+              >
+                {r.label}
+              </a>
+            ) : (
+              <Label>{r.label}</Label>
+            )}
+            <Sticker
               href={r.href}
               label={r.label}
               badge={r.badge}
