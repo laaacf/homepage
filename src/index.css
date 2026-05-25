@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/* Fonts — each has one job:
+   sans   = body            (Hanken Grotesk)
+   mono   = labels/stickies  (IBM Plex Mono)
+   hand   = marker scribbles (Caveat)
+   script = corner monogram  (Pinyon Script) */
+@import "@fontsource-variable/hanken-grotesk";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+@import "@fontsource-variable/caveat";
+@import "@fontsource/pinyon-script/400.css";
+
+@theme {
+  --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-hand: "Caveat Variable", ui-sans-serif, cursive;
+  --font-script: "Pinyon Script", ui-serif, cursive;
+
+  /* Warm paper palette */
+  --color-paper: #f8f4ec;
+  --color-ink: #26221c;
+  --color-soft: #6f685c;
+  --color-muted: #aaa294;
+  --color-hair: #e7e0d2;
+
+  /* Accents for the desk annotations */
+  --color-sticky: #fbf1a4;
+  --color-sticky-ink: #6a6320;
+  --color-marker: #d75a48;
+  --color-marker-green: #4f9d69;
+  --color-marker-blue: #4f6fc0;
+  --color-note: #dde8fb;
+  --color-note-ink: #3a5ba0;
+  --color-stamp: #9b8f5e;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+}
+
+@layer components {
+  /* Notebook dotted margin */
+  .dotted {
+    background-image: radial-gradient(var(--color-hair) 1.3px, transparent 1.3px);
+    background-size: 16px 16px;
+    background-position: 0 0;
+  }
+
+  /* Yellow sticky note */
+  .sticky-note {
+    background: var(--color-sticky);
+    color: var(--color-sticky-ink);
+    box-shadow:
+      0 1px 1px rgba(0, 0, 0, 0.04),
+      0 6px 14px -8px rgba(91, 80, 20, 0.45);
+  }
+
+  /* Rubber stamp */
+  .stamp {
+    color: var(--color-stamp);
+    border: 1.5px solid color-mix(in srgb, var(--color-stamp) 70%, transparent);
+    outline: 1.5px solid color-mix(in srgb, var(--color-stamp) 70%, transparent);
+    outline-offset: 2px;
+  }
+
+  /* Blue marginalia note */
+  .note {
+    background: var(--color-note);
+    color: var(--color-note-ink);
+  }
+}
+
+/* Staggered entrance */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Marker circle draws itself in */
+@keyframes scribble {
+  from {
+    stroke-dashoffset: 320;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    opacity: 0;
+    animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .scribble {
+    stroke-dasharray: 320;
+    animation: scribble 0.9s 0.6s ease-out forwards;
+  }
+}
