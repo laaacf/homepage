@@ -34,7 +34,10 @@
   --color-paper: #f8f4ec;
   --color-ink: #26221c;
   --color-soft: #6f685c;
-  --color-muted: #aaa294;
+  /* muted is the faintest text tier (section labels, plain dates); kept dark
+     enough to clear WCAG AA 4.5:1 on paper (4.81:1) while still reading as the
+     quietest layer. */
+  --color-muted: #736b5b;
   --color-hair: #e7e0d2;
 
   /* Accents for the desk annotations */
@@ -45,7 +48,8 @@
   --color-marker-blue: #4f6fc0;
   --color-note: #dde8fb;
   --color-note-ink: #3a5ba0;
-  --color-stamp: #9b8f5e;
+  /* olive stamp ink, darkened to meet WCAG AA 4.5:1 on paper (4.59:1). */
+  --color-stamp: #7a6f3e;
 }
 
 @layer base {

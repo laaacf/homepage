@@ -6,6 +6,19 @@ import {
   type ReactNode,
 } from "react";
 
+/* Replays an entrance animation (by remounting via a bumped key) on hover —
+   but only on devices with a true pointer. Touchscreens synthesize a
+   `mouseenter` on tap, which would replay a lone squiggle/frame *without* its
+   hover-gated note, reading as half-broken; ignoring those keeps the page a
+   clean static thing on touch and the full delight on desktop. */
+function useHoverReplay() {
+  const [key, setKey] = useState(0);
+  const replay = () => {
+    if (window.matchMedia?.("(hover: hover)").matches) setKey((k) => k + 1);
+  };
+  return [key, replay] as const;
+}
+
 /* ----------------------------- desk elements ----------------------------- */
 
 /* Peel-off sticker — grab it, fling it around, and it springs back to its
@@ -82,10 +95,10 @@ export function DraggableSticker({
 /* Corner script monogram that writes itself in on load and re-inks on hover
    (the key remount replays the wipe), echoing the page's drawn-by-hand feel. */
 export function Monogram({ children }: { children: string }) {
-  const [trace, setTrace] = useState(0);
+  const [trace, reInk] = useHoverReplay();
   return (
     <span
-      onMouseEnter={() => setTrace((t) => t + 1)}
+      onMouseEnter={reInk}
       className="select-none pt-1 font-script text-6xl leading-none text-muted/70"
     >
       <span
@@ -190,8 +203,7 @@ export function Sticker({
 }) {
   const stroke = MARKER[color];
   // Bumping this on hover remounts the frame so it re-inks itself.
-  const [trace, setTrace] = useState(0);
-  const reInk = () => setTrace((t) => t + 1);
+  const [trace, reInk] = useHoverReplay();
   const className = `${tilt} relative inline-flex shrink-0 items-center px-3 py-[4px] font-hand text-[1.05rem] leading-none`;
   const style = {
     color: stroke,
@@ -239,11 +251,11 @@ export function HandUnderline({
 }) {
   // Bumping this key remounts the path, replaying the re-trace animation each
   // time the phrase is hovered.
-  const [trace, setTrace] = useState(0);
+  const [trace, reTrace] = useHoverReplay();
   return (
     <span
       className="group/note relative inline-block whitespace-nowrap"
-      onMouseEnter={() => setTrace((t) => t + 1)}
+      onMouseEnter={reTrace}
     >
       {children}
       <svg
