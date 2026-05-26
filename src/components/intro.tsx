@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import avatarMark from "../assets/avatar-mark.png";
 import { intro } from "../content";
 import {
+  DashedFrame,
   DraggableSticker,
   HandUnderline,
   MarkerHighlight,
@@ -86,9 +87,13 @@ export function Intro() {
       </div>
 
       <aside
-        className="note rise relative mt-5 rounded-md px-3.5 py-3 font-mono text-[0.72rem] leading-relaxed"
-        style={{ animationDelay: "170ms" }}
+        className="note rise relative mt-5 -rotate-[0.6deg] px-4 py-3.5 font-mono text-[0.72rem] leading-relaxed"
+        style={{
+          animationDelay: "170ms",
+          borderRadius: "11px 8px 12px 9px / 8px 12px 9px 11px",
+        }}
       >
+        <DashedFrame />
         <Pushpin />
         {intro.status} Find me on{" "}
         <a

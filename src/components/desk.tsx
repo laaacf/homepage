@@ -417,6 +417,34 @@ export function CopyEmailLink({
   );
 }
 
+/* Postage-stamp perforated border — a fine dashed outline hugging a note, set
+   a few px inside the edge. The dash pattern stays uniform at any box size
+   (non-scaling stroke) and inks itself in the note's currentColor. */
+export function DashedFrame() {
+  return (
+    <svg
+      aria-hidden="true"
+      preserveAspectRatio="none"
+      viewBox="0 0 100 100"
+      className="pointer-events-none absolute left-1 top-1 h-[calc(100%-0.5rem)] w-[calc(100%-0.5rem)] overflow-visible opacity-70"
+    >
+      <rect
+        x="0.6"
+        y="0.6"
+        width="98.8"
+        height="98.8"
+        rx="4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeDasharray="2 3.5"
+        strokeLinecap="round"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  );
+}
+
 /* Little hand-drawn pushpin that "pins" the note to the page. */
 export function Pushpin() {
   return (
