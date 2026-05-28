@@ -394,56 +394,6 @@ export function LiveDot() {
 export const elsewhereLink =
   "group/link relative font-mono text-[0.78rem] text-soft underline decoration-transparent underline-offset-4 transition-colors duration-200 hover:text-ink hover:decoration-current";
 
-/* An "elsewhere" link for an email: opens the mailto as usual, but also copies
-   the address and peels up a handwritten "copied!" sticky that fades on its
-   own. Clipboard failures are ignored — the mailto still fires. */
-export function CopyEmailLink({
-  href,
-  label,
-}: {
-  href: string;
-  label: string;
-}) {
-  const [copied, setCopied] = useState(false);
-  const timer = useRef<number | undefined>(undefined);
-
-  const copy = () => {
-    const email = href.replace(/^mailto:/, "");
-    navigator.clipboard?.writeText(email).then(
-      () => {
-        setCopied(true);
-        window.clearTimeout(timer.current);
-        timer.current = window.setTimeout(() => setCopied(false), 1300);
-      },
-      () => {},
-    );
-    // No preventDefault: let the mailto open the user's mail client too.
-  };
-
-  return (
-    <a href={href} onClick={copy} className={elsewhereLink}>
-      {label}
-      <LinkDoodle />
-      <span
-        aria-hidden="true"
-        className={`pointer-events-none absolute bottom-full left-1/2 z-40 mb-1.5 -translate-x-1/2 -rotate-2 whitespace-nowrap border px-2 py-[3px] font-hand text-[0.8rem] leading-none text-(--ok) transition-[opacity,transform] duration-200 ${copied ? "scale-100 opacity-100" : "scale-90 opacity-0"}`}
-        style={
-          {
-            "--ok": "var(--color-marker-green)",
-            borderColor:
-              "color-mix(in srgb, var(--color-marker-green) 55%, transparent)",
-            backgroundColor: "var(--color-paper)",
-            borderRadius: "9px 6px 8px 6px / 6px 8px 6px 9px",
-            boxShadow: "0 1px 1px rgba(0,0,0,0.04), 0 3px 6px rgba(0,0,0,0.09)",
-          } as CSSProperties
-        }
-      >
-        copied!
-      </span>
-    </a>
-  );
-}
-
 /* Postage-stamp perforated border — a fine dashed outline hugging a note, set
    a few px inside the edge. The dash pattern stays uniform at any box size
    (non-scaling stroke) and inks itself in the note's currentColor. */

@@ -8,7 +8,6 @@ import {
   type Project,
 } from "../content";
 import {
-  CopyEmailLink,
   DateTag,
   elsewhereLink,
   HeartDoodle,
@@ -163,27 +162,31 @@ export function Projects() {
 }
 
 export function Elsewhere() {
+  const lastIndex = links.length - 1;
   return (
     <section className="rise mt-9" style={{ animationDelay: "500ms" }}>
       <SectionLabel>elsewhere</SectionLabel>
-      <ul className="flex flex-wrap gap-x-5 gap-y-2">
-        {links.map((l) => (
-          <li key={l.label}>
-            {l.href.startsWith("mailto:") ? (
-              <CopyEmailLink href={l.href} label={l.label} />
-            ) : (
-              <a href={l.href} className={elsewhereLink}>
-                {l.heart && <HeartDoodle />}
-                {l.label}
-                <LinkDoodle />
-              </a>
-            )}
+      <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
+        {links.map((l, i) => (
+          <li
+            key={l.label}
+            className={
+              i === lastIndex
+                ? "flex grow items-center justify-between gap-2.5"
+                : undefined
+            }
+          >
+            <a href={l.href} className={elsewhereLink}>
+              {l.heart && <HeartDoodle />}
+              {l.label}
+              <LinkDoodle />
+            </a>
+            {/* Pin the "around / online" dot to the last link's row so the two
+                always wrap together — never to its own line. The growing li
+                pushes the dot to the right edge regardless of row width. */}
+            {i === lastIndex && <LiveDot />}
           </li>
         ))}
-        {/* "around / online" dot, pushed to the far right of the row */}
-        <li className="ml-auto flex items-center" aria-hidden="true">
-          <LiveDot />
-        </li>
       </ul>
     </section>
   );

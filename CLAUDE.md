@@ -38,6 +38,10 @@ The codebase is deliberately tiny and split along one axis: **content vs. layout
 
 When adding content, prefer extending the typed arrays in `content.ts`; reach for `src/components/` (and `index.css`) only for genuinely new visual elements — put reusable primitives in `desk.tsx` and section/page composition in `sections.tsx`.
 
+## Deployment
+
+The site is deployed to Cloudflare via **Workers Static Assets** — there is no Worker script. `wrangler.jsonc` declares `assets.directory = "./dist"`, so Cloudflare runs `bun run build` and serves the built `dist/` directly. Don't add a Worker entrypoint or convert this to Pages without a reason; if you need server logic, add a Worker script alongside `assets` in `wrangler.jsonc`.
+
 ## Conventions
 
 - Tailwind v4 is configured via the Vite plugin (`@tailwindcss/vite`) and `@import "tailwindcss"` in `index.css` — there is **no `tailwind.config.js`**. Design tokens are CSS variables in the `@theme` block; reference them as Tailwind utilities (e.g. `text-ink`, `bg-paper`) or via `var(...)`.

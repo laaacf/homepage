@@ -104,6 +104,5 @@ export const links: Link[] = [
   { label: "Blog", href: "https://blog.sn0w.fyi" },
   { label: "Memo", href: "https://memo.sn0w.fyi" },
   { label: "CV", href: "https://cv.sn0w.fyi" },
-  { label: "Email", href: "mailto:l1nsn0w@qq.com" },
   { label: "Sponsor", href: "https://sponsor.sn0w.fyi", heart: true },
 ];
