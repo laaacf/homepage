@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import avatarMark from "../assets/avatar-mark.png";
+import avatarMark from "../assets/avatar-mark.svg";
 import { intro } from "../content";
 import {
   DashedFrame,
@@ -67,10 +67,10 @@ export function Intro() {
             <img
               src={avatarMark}
               alt={intro.name}
-              width={44}
-              height={44}
+              width={72}
+              height={72}
               draggable={false}
-              className="size-11"
+              className="size-18"
             />
           </span>
         </DraggableSticker>
