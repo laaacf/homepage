@@ -2,7 +2,7 @@
 
 export const intro = {
   name: "liubin",
-  initial: "B", // used for the corner script monogram
+  initial: "L", // used for the corner script monogram
   lines: [
     "我是 liubin，一个计算机爱好者。",
     "不写代码，但喜欢探索各种好玩的软件。",
@@ -10,7 +10,7 @@ export const intro = {
   ],
   // Shown as the blue marginalia note.
   status:
-    "目前不上班，专职家庭煮男，偶尔折腾自己的网站和 NAS。",
+    "目前不上班，专职家庭煮男，偶尔折腾自己的网站和 NAS，学习使用 AI。",
   github: "https://github.com/laaacf",
   message: "mailto:3868088@gmail.com",
 } as const;
@@ -23,7 +23,7 @@ export type Entry = {
 };
 
 export const experience: Entry[] = [
-  { label: "闲赋在家，折腾计算机、AI、偶尔摄影", date: "2019 至今" },
+  { label: "赋闲在家，折腾计算机、AI、偶尔摄影", date: "2019 至今" },
   { label: "事业单位技术岗", date: "1989–2019" },
 ];
 
@@ -48,7 +48,7 @@ export const projects: Project[] = [
   {
     label: "edit-hosts — 远程 hosts 管理器",
     href: "https://github.com/laaacf/edit-hosts",
-    date: "2026",
+    date: "2025",
     color: "blue",
     stamp: "tool",
     blurb:
@@ -66,6 +66,16 @@ export const projects: Project[] = [
     stack: ["Python", "AI"],
   },
   {
+    label: "puter-unlocked — unlocked 个人云系统",
+    href: "https://github.com/laaacf/puter-unlocked",
+    date: "2026",
+    color: "red",
+    stamp: "AI",
+    blurb:
+      "隐私优先的个人云系统，支持反向代理和灵活的域名访问。",
+    stack: ["Python", "AI"],
+  },
+  {
     label: "Self-Host Hub — 自部署应用合集",
     site: "https://home.laaa.site/",
     date: "ongoing",
@@ -79,19 +89,39 @@ export const projects: Project[] = [
 
 export const artifacts: Entry[] = [
   {
-    label: "初试 DeepSeek V4 大模型",
-    date: "2026",
-    href: "https://laaa.site/archives/chu-shi-deepseek-v4-da-mo-xing-wei-li",
+    label: "最近计算机相关知识学习情况记录",
+    date: "2026-02",
+    href: "https://laaa.site/archives/zui-jin-ji-suan-ji-xiang-guan-zhi-shi-xue-xi-qing-kuang-ji-lu",
   },
   {
-    label: "Debian 12 安装及配置软路由全记录",
-    date: "2025",
-    href: "https://laaa.site/archives/debian-12-an-zhuang-ji-pei-zhi-ruan-lu-you-quan-ji-lu",
+    label: "2025年度总结",
+    date: "2025-12",
+    href: "https://laaa.site/archives/2025nian-du-zong-jie",
+  },
+  {
+    label: "滑雪之初体验",
+    date: "2024-04",
+    href: "https://laaa.site/archives/hua-xue-zhi-chu-ti-yan",
   },
   {
     label: "听歌的变迁",
-    date: "2024",
+    date: "2024-02",
     href: "https://laaa.site/archives/ting-ge-de-bian-qian",
+  },
+  {
+    label: "观《逐梦大海》有感",
+    date: "2023-04",
+    href: "https://laaa.site/archives/guan--zhu-meng-da-hai--you-gan",
+  },
+  {
+    label: "年度回顾｜盘点我的2022",
+    date: "2022-12",
+    href: "https://laaa.site/archives/nian-du-hui-gu-2022",
+  },
+  {
+    label: "年度回顾｜盘点我的2021",
+    date: "2022-01",
+    href: "https://laaa.site/archives/nian-du-hui-gu--pan-dian-wo-de-2021",
   },
 ];
 
